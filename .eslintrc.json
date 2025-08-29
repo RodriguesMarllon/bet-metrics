@@ -1,0 +1,19 @@
+// .eslintrc.json
+{
+  "env": {
+    "es2021": true,
+    "node": true,
+    "commonjs": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
+  "rules": {
+    // Você pode adicionar regras específicas do ESLint aqui, se precisar.
+    // Ex: "no-unused-vars": "warn"
+  }
+}

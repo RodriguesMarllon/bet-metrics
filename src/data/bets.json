@@ -1,0 +1,122 @@
+[
+  {
+    "id": "002",
+    "stake": 50,
+    "odd": 2.1,
+    "status": "settled",
+    "result": "lost",
+    "potencialReturn": 105,
+    "profit": 0,
+    "loss": 50,
+    "settledAt": "2025-08-27"
+  },
+  {
+    "id": "003",
+    "stake": 100,
+    "odd": 1.4,
+    "status": "settled",
+    "result": "won",
+    "potencialReturn": 140,
+    "profit": 40,
+    "loss": 0,
+    "settledAt": "2025-08-27"
+  },
+  {
+    "id": "004",
+    "stake": 25,
+    "odd": 2.5,
+    "status": "open",
+    "result": null,
+    "potencialReturn": 62.5,
+    "profit": 0,
+    "loss": 0,
+    "settledAt": null
+  },
+  {
+    "id": "005",
+    "stake": 75,
+    "odd": 1.95,
+    "status": "settled",
+    "result": "lost",
+    "potencialReturn": 146.25,
+    "profit": 0,
+    "loss": 75,
+    "settledAt": "2025-08-26"
+  },
+  {
+    "id": "006",
+    "stake": 20,
+    "odd": 3.5,
+    "status": "settled",
+    "result": "won",
+    "potencialReturn": 70,
+    "profit": 50,
+    "loss": 0,
+    "settledAt": "2025-08-25"
+  },
+  {
+    "id": "007",
+    "stake": 40,
+    "odd": 1.72,
+    "status": "settled",
+    "result": "void",
+    "potencialReturn": 68.8,
+    "profit": 0,
+    "loss": 0,
+    "settledAt": "2025-08-24"
+  },
+  {
+    "id": "008",
+    "stake": 15,
+    "odd": 2.25,
+    "status": "settled",
+    "result": "lost",
+    "potencialReturn": 33.75,
+    "profit": 0,
+    "loss": 15,
+    "settledAt": "2025-08-23"
+  },
+  {
+    "id": "009",
+    "stake": 60,
+    "odd": 1.66,
+    "status": "settled",
+    "result": "won",
+    "potencialReturn": 99.6,
+    "profit": 39.6,
+    "loss": 0,
+    "settledAt": "2025-08-22"
+  },
+  {
+    "id": "010",
+    "stake": 30,
+    "odd": 2,
+    "status": "open",
+    "result": null,
+    "potencialReturn": 60,
+    "profit": 0,
+    "loss": 0,
+    "settledAt": null
+  },
+  {
+    "id": "001",
+    "stake": 32,
+    "odd": 1.85,
+    "status": "settled",
+    "result": "won",
+    "potencialReturn": 59.2,
+    "profit": 27.2,
+    "loss": 0,
+    "settledAt": "2025-08-28"
+  },
+  {
+    "id": "001",
+    "odd": 1.85,
+    "status": "settled",
+    "result": "won",
+    "potencialReturn": 59.2,
+    "profit": 27.2,
+    "loss": 0,
+    "settledAt": "2025-08-28"
+  }
+]
