@@ -4,6 +4,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
+RUN npm run dist
 
 # ---- Stage 2: Development ----
 FROM builder AS development
