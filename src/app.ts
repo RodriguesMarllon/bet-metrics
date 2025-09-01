@@ -1,13 +1,12 @@
-import express from "express";
-import router from "./routes";
-import cors from "cors";
+import Fastify, { FastifyInstance } from "fastify";  
+import cors from "@fastify/cors";
+import appRoutes from "./routes/bet.routes";
 
-export default function createApp() {
-	const app = express()
+export default function createApp(): FastifyInstance {
+  const fastify: FastifyInstance = Fastify()
 
-	app.use(express.json());
-	app.use("/api", router);
-	app.use(cors())
+  fastify.register(cors, {origin: "*"});
+  fastify.register(appRoutes, {prefix: "/api"});
 
-	return app;
+  return fastify
 }

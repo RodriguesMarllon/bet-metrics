@@ -1,32 +1,43 @@
-import { Request, Response } from "express";
 import * as betService from "../services/bet-service";
+import { FastifyReply, FastifyRequest } from "fastify";
+import { BetModel } from "../models/bet-model";
 
-export const postBet = async (req: Request, res: Response) => {
-  const httpResponse = await betService.createBetService(req.body);
-
-  res.status(httpResponse.statusCode).json(httpResponse.body);
+interface Params{
+  id: string;
 }
 
-export const getBet = async (req: Request, res: Response) => {
+export const postBet = async (request: FastifyRequest< { Body: BetModel}>, reply: FastifyReply) => {
+  const httpResponse = await betService.createBetService(request.body);
+
+  return reply.status(httpResponse.statusCode).send(httpResponse.body);
+}
+
+export const getBet = async (request: FastifyRequest, reply: FastifyReply) => {
   const httpResponse = await betService.getBetsService();
 
-  res.status(httpResponse.statusCode).json(httpResponse.body);
+  reply.status(httpResponse.statusCode).send(httpResponse.body);
 }
 
-export const getBetById = async (req: Request, res: Response) => {
-  const httpResponse = await betService.getBetById(req.params.id);
+export const getBetById = async (request: FastifyRequest<{ Params: Params}>, reply: FastifyReply) => {
+  const { id } = request.params;
+  
+  const httpResponse = await betService.getBetById(id);
 
-  res.status(httpResponse.statusCode).json(httpResponse.body);
+  reply.status(httpResponse.statusCode).send(httpResponse.body);
 }
 
-export const putBet = async (req: Request, res: Response) => {
-  const httpResponse = await betService.putBet(req.params.id, req.body);
+export const putBet = async (request: FastifyRequest<{ Params: Params, Body: BetModel}>, reply: FastifyReply) => {
+  const { id } = request.params;
 
-  res.status(httpResponse.statusCode).json(httpResponse.body);
+  const httpResponse = await betService.putBet(id, request.body);
+
+  reply.status(httpResponse.statusCode).send(httpResponse.body);
 }
 
-export const deleteBet = async (req: Request, res: Response) => {
-  const httpResponse = await betService.deleteBet(req.params.id);
+export const deleteBet = async (request: FastifyRequest<{ Params: Params, Body: BetModel }>, reply: FastifyReply) => {
+  const { id } = request.params;
 
-  res.status(httpResponse.statusCode).json(httpResponse.body);
+  const httpResponse = await betService.deleteBet(id);
+
+  reply.status(httpResponse.statusCode).send(httpResponse.body);
 }

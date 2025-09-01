@@ -7,7 +7,7 @@ Currently, the API supports all CRUD (Create, Read, Update, Delete) operations f
 ## Technologies Used
 
   * **Node.js**: JavaScript runtime environment.
-  * **Express**: Web framework for building the API.
+  * **Fastify**: Web framework for building the API.
   * **TypeScript**: A typed superset of JavaScript.
   * **tsx**: A tool for running TypeScript files directly in development.
   * **tsup**: A bundler for building the project for production.
