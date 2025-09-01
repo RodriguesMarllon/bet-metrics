@@ -1,6 +1,6 @@
 # Bet Metrics API
 
-Welcome to the **Bet Metrics API**\! This is a REST API designed for managing and analyzing sports betting data, built with Node.js, Express, and TypeScript.
+Welcome to the **Bet Metrics API**\! This is a REST API designed for managing and analyzing sports betting data, built with Node.js, Fastify, and TypeScript.
 
 Currently, the API supports all CRUD (Create, Read, Update, Delete) operations for bets, using a local JSON file as a data store for rapid development.
 
