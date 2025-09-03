@@ -1,0 +1,32 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum BetStatus {
+  OPEN
+  SETTLED
+  CANCELLED
+}
+
+enum BetResult {
+  WON
+  LOST
+  VOID
+}
+
+model Bets {
+  id              String @id @default(uuid())
+  stake           Decimal
+  odd             Float
+  status          BetStatus @default(OPEN)
+  result          BetResult?
+  potencialReturn Decimal
+  profit          Decimal?
+  loss            Decimal?
+  settledAt       DateTime?
+}

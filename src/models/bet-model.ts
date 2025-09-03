@@ -1,9 +1,11 @@
+import { BetResult, BetStatus } from "@prisma/client";
+
 export interface BetModel{
   id: string;
   stake: number;
   odd: number;
-  status: string;
-  result: string;
+  status: BetStatus;
+  result: BetResult;
   potencialReturn: number;
   profit: number;
   loss: number;

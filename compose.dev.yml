@@ -8,9 +8,27 @@ services:
     ports:
       - "3333:3333"
     environment:
+      - DATABASE_URL=postgresql://prismauser:mysecretpassword@postgres-db:5432/mydatabase
       - PORT=3333
     volumes:
-    - .:/app
-    - /app/node_modules
-
+      - .:/app
+      - /app/node_modules
     command: npm run start:watch
+    depends_on:
+      - postgres-db
+
+  postgres-db:
+    image: postgres:16-alpine
+    container_name: prisma-postgres-dev
+    restart: always
+    environment:
+      POSTGRES_USER: prismauser
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata-dev:/var/lib/postgresql/data
+
+volumes:
+  pgdata-dev:

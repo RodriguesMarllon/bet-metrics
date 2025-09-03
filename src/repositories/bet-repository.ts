@@ -1,73 +1,40 @@
-import { BetModel } from "../models/bet-model"
-import fs from "fs/promises";
+import { BetModel } from "../models/bet-model";
+import { prisma } from "../database/prisma-client";
+import { BetStatus, Bets as Bet } from "@prisma/client";
 
-const filePath = "./src/data/bets.json";
-const encoding = "utf-8"
-
-const readBetsJson = async (): Promise<BetModel[]> => {
-  const data = await fs.readFile(filePath, encoding);
-  const bets: BetModel[] = JSON.parse(data);
-
-  return bets;
+export interface CreateBetDTO {
+  stake: number;
+  odd: number;
+  status: BetStatus;
+  potencialReturn: number;
 }
 
-const writeBetsJson = async(bets: BetModel[]) => {
-  await fs.writeFile(filePath, JSON.stringify(bets, null, 2));
-}
+export const insertBet = async (bet: CreateBetDTO): Promise<Bet> => {
+  return await prisma.bets.create({ data: bet });
+};
 
-export const insertBet = async (bet: BetModel) => {
-  const bets: BetModel[] = await readBetsJson();
+export const findAllBets = async (): Promise<Bet[]> => {
+  return await prisma.bets.findMany();
+};
 
-  bets.push(bet);
+export const findBetById = async (id: string): Promise<Bet> => {
+  return await prisma.bets.findUniqueOrThrow({ where: { id: id } });
+};
 
-  await writeBetsJson(bets);
-}
+export const findAndModifyBet = async (
+  id: string,
+  betInput: Partial<BetModel>,
+) => {
+  const { id: _, ...updateData } = betInput;
 
-export const findAllBets = async () => {
-  const bets: BetModel[] = await readBetsJson();
-
-  return bets;
-}
-
-export const findBetById = async (id: string) => {
-  const bets: BetModel[] = await readBetsJson();
-
-  const filteredBet =  bets.find(bet => bet.id === id);
-
-  if(!filteredBet){
-    return false;
-  }
-
-  return filteredBet;
-}
-
-export const findAndModifyBet = async (id: string, bet: BetModel) => {
-  const bets: BetModel[] = await readBetsJson();
-
-  const index = bets.findIndex(x => x.id === id);
-  
-  if(index === -1){
-    return false;
-  }
-
-  bets[index] = {...bets[index], ...bet}
-
-  await writeBetsJson(bets);
-
-  return bets[index];
-}
+  return await prisma.bets.update({
+    where: { id: id },
+    data: updateData,
+  });
+};
 
 export const deleteOneBet = async (id: string) => {
-  const bets: BetModel[] = await readBetsJson();
+  const bet = await prisma.bets.delete({ where: { id } });
 
-  const betToRemoveIndex = bets.findIndex(x => x.id === id);
-
-  if(betToRemoveIndex === -1){
-    return false;
-  }
-
-  bets.splice(betToRemoveIndex, 1);
-
-  await writeBetsJson(bets);
-  return true;
-}
+  return bet;
+};
